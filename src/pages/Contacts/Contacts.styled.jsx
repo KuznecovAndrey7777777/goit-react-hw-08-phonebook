@@ -1,39 +1,36 @@
 import styled from '@emotion/styled';
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
+export const Section = styled.section`
+  display: block;
+  flex-direction: row;
   align-items: center;
-  width: 400px;
-  padding: 25px;
-  padding-bottom: 25px;
-  border-radius: 5px;
-  margin-bottom: 35px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  background-color: white;
+  justify-content: center;
+  gap: 40px;
+  text-align: center;
 `;
+
 export const Title = styled.h2`
   font-size: 30px;
   font-weight: 600;
-  margin-top: 0;
+  margin-top: 30px;
   margin-bottom: 10px;
 `;
 
-export const Input = styled.input`
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 5px;
+export const ContactsWrapper = styled.div`
+  width: 400px;
+  margin-bottom: 35px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 25px;
+  margin-top: 12px;
+  background-color: white;
+`;
 
-  border: 0;
-  border-bottom: 2px solid gray;
-  outline: 0;
-  font-size: 1.3rem;
-  color: black;
-  padding: 7px 0;
-  background: transparent;
+export const Message = styled.p`
+  font-size: 30px;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
 `;
 
 export const AddButton = styled.button`
@@ -71,6 +68,7 @@ export const AddButton = styled.button`
       7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
   }
+
   &:hover {
     color: #fff;
   }
@@ -78,9 +76,5 @@ export const AddButton = styled.button`
   &:hover:after {
     left: 0;
     width: 100%;
-  }
-  > span {
-    margin-right: 10px;
-    font-size: 18px;
   }
 `;

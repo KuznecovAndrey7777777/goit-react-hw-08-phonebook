@@ -1,30 +1,24 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Input, AddButton, Form, Title } from './ContactForm.styled';
+import { IoMdContacts } from 'react-icons/io';
 import Notiflix from 'notiflix';
-import { addContact } from '../../redux/operations';
-import { selectContacts } from '../../redux/selectors';
-import { Title, Form, Input, AddButton } from './ContactForm.styled';
+import Loader from '../Loader/Loader';
+import { addContact } from 'redux/contacts/operation';
+import { useContacts } from 'hooks/useContact';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const { contacts } = useContacts();
+  const { isLoading } = useContacts();
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const { name, phone } = e.target;
-    const contact = { name: name.value, phone: phone.value };
-
+    const { name, number } = e.target;
+    const contact = { name: name.value, number: number.value };
     if (contacts.find(existingContact => existingContact.name === name.value)) {
       Notiflix.Notify.failure(`${contact.name} вже у ваших контактах`);
     } else {
-      try {
-        await dispatch(addContact(contact));
-        Notiflix.Notify.success(
-          `${contact.name} успішно додано до вашої телефонної книги`
-        );
-      } catch (error) {
-        // обробка помилок
-      }
+      dispatch(addContact(contact));
     }
     e.target.reset();
   };
@@ -36,21 +30,24 @@ const ContactForm = () => {
         <Input
           type="text"
           name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Назва може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Джейкоб Мерсер, Шарль де Бац де Кастельмор д'Артань"
+          title="Назва може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Джейкоб Мерсер, Шарль де Бац де Кастельмор д'Артаньян"
           required
           placeholder="Name"
         />
         <Input
           type="tel"
-          name="phone"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          name="number"
           title="Номер телефону має складатися з цифр і може містити пробіли, тире, круглі дужки та починатися з +"
           required
           placeholder="Number"
         />
         <AddButton type="submit">
-          <span>Add contacts</span>
+          <span>Add contacts </span>
+          {isLoading ? (
+            <Loader color={'#ffffff'} size={'20'} />
+          ) : (
+            <IoMdContacts size="20" />
+          )}
         </AddButton>
       </Form>
     </>

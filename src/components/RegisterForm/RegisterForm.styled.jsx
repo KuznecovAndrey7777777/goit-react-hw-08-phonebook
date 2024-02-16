@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Form = styled.form`
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,12 +13,6 @@ export const Form = styled.form`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: white;
-`;
-export const Title = styled.h2`
-  font-size: 30px;
-  font-weight: 600;
-  margin-top: 0;
-  margin-bottom: 10px;
 `;
 
 export const Input = styled.input`
@@ -36,10 +31,11 @@ export const Input = styled.input`
   background: transparent;
 `;
 
-export const AddButton = styled.button`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   width: 100%;
   padding: 8px;
   cursor: pointer;
@@ -70,6 +66,7 @@ export const AddButton = styled.button`
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
       7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    font-size: 18px;
   }
   &:hover {
     color: #fff;
@@ -80,7 +77,6 @@ export const AddButton = styled.button`
     width: 100%;
   }
   > span {
-    margin-right: 10px;
     font-size: 18px;
   }
 `;

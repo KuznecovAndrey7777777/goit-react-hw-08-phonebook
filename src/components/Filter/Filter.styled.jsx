@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const Label = styled.label`
-  width: 450px;
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 10px;
@@ -10,10 +9,10 @@ export const Label = styled.label`
 
 export const FilterInput = styled.input`
   display: block;
-  width: 100%;
+  min-width: 400px;
   margin-bottom: 10px;
   margin-top: 10px;
-  padding: 15px;
+  padding: 15px 25px;
 
   border: 0;
   outline: 0;
