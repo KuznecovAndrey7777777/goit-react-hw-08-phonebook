@@ -6,14 +6,18 @@ import Filter from 'components/Filter/Filter';
 import ContactsList from 'components/ContactsList/ContactsList';
 import { fetchContacts } from 'redux/contacts/operation';
 import { useContacts } from 'hooks/useContact';
+import { UseAuth } from 'hooks/useAuth';
 
 const Contacts = () => {
   const dispatch = useDispatch();
   const { contacts } = useContacts();
+  const { isLoggedIn } = UseAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(fetchContacts());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <Section>

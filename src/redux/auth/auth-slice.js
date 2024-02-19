@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './auth-operations';
-import { Notify } from 'notiflix';
 
 const initialState = {
   user: { name: null, email: null },
@@ -30,6 +29,7 @@ const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isRefreshing = false;
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
@@ -44,7 +44,6 @@ const authSlice = createSlice({
       })
       .addCase(logIn.rejected, (state, action) => {
         state.error = action.payload;
-        Notify.failure('Неправильна електронна адреса або пароль! Будь ласка спробуйте ще раз.');
       });
   },
 });

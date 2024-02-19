@@ -5,5 +5,8 @@ export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   const { isLoggedIn, isRefreshing } = UseAuth();
   const shouldRedirect = !isLoggedIn && !isRefreshing;
 
+  // console.log(isLoggedIn);
+  // console.log(isRefreshing);
+
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };
