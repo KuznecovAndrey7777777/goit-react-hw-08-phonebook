@@ -5,8 +5,6 @@ import { authReducer } from './auth/auth-slice';
 import contactsReducer from './contacts/contactSlice';
 import filterReducer from './contacts/filterSlice';
 
-import { fetchContacts } from './contacts/operation';
-
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -31,4 +29,4 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-store.dispatch(fetchContacts());
+
